@@ -22,6 +22,7 @@
   "homepage": "https://github.com/nrswamy/CmdDictionaryTool#readme",
   "dependencies": {
     "commander": "^2.20.0",
+    "inquirer": "^6.3.1",
     "request": "^2.88.0"
   }
 }

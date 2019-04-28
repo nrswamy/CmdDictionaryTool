@@ -249,3 +249,19 @@ exports.getRandomWord = () => {
   let rand = Math.floor(Math.random()*1952)
   return wordsList[rand]
 }
+
+exports.getRandomStringinArray = (array) => {
+  let rand = Math.floor(Math.random()*array.length)
+  return array[rand]
+}
+
+exports.getJumbledWord = (word) => {
+  var tmp,j;
+    for(var i = word.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      tmp = word[i];
+      word[i] = word[j];
+      word[j] = tmp;
+    }
+    return word.join("")
+}

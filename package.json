@@ -1,0 +1,26 @@
+{
+  "name": "cmddictionarytool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dict.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrswamy/CmdDictionaryTool.git"
+  },
+  "keywords": [
+    "dictinary",
+    "node"
+  ],
+  "author": "swamy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nrswamy/CmdDictionaryTool/issues"
+  },
+  "homepage": "https://github.com/nrswamy/CmdDictionaryTool#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}

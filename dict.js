@@ -1,105 +1,71 @@
 var DictionaryAPI = require('./api')
+const program = require('commander')
+const Util = require('./util')
 
 var dict = new DictionaryAPI()
-dict.getSynonyms('price')
+
+program
+  .version('0.0.1')
+  .option('syn, --syn <word>', 'get Synonyms of word')
+  .option('def, --def <word>', 'get Definitions of word')
+  .option('ant, --ant <word>', 'get Antonyms of word')
+  .option('ex, --ex <word>', 'get Examples of word')
+  .option('dict, --dict <word>', 'get Dictionaries of word')
+  .option('play, --play', 'play game')
+  .parse(process.argv)
+
+//  console.log(cmdValue)
+if(program.syn) {
+  dict.getSynonyms(program.syn)
   .then(response => {
-    printSynonyms(response)
+    Util.printSynonyms(response)
   })
   .catch(err => {
     console.log(err)
   })
-
-dict.getAntonyms('price')
-  .then(response => {
-    printAntonyms(response)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-
-dict.getDefinitons('price')
-  .then(response => {
-    printDefinitions(response)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-
-dict.getExamples('price')
-  .then(response => {
-    printExamples(response)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-
-dict.getFullDictionary('price')
-  .then(response => {
-    printDefinitions(response.defsAndExs)
-    printSynonyms(response.synonyms)
-    printAntonyms(response.antonyms)
-    printExamples(response.defsAndExs)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-
-printSynonyms = (response) => {
-  synonyms = []
-  let senses = extractData(response)
-  if (senses) senses.forEach(sense => {
-    if (sense.synonyms) sense.synonyms.forEach(synonym => {
-      synonyms.push(synonym.text)
-    })
-  })
-  console.log('\n\nSynonyms:')
-  console.log(synonyms.join())
 }
-
-printAntonyms = (response) => {
-  antonyms = []
-  let senses = extractData(response)
-  if (senses) senses.forEach(sense => {
-    if (sense.antonyms) sense.antonyms.forEach(antonym => {
-      antonyms.push(antonym.text)
-    })
+else if(program.ant) {
+  dict.getAntonyms(program.ant)
+  .then(response => {
+    Util.printAntonyms(response)
   })
-  console.log('\n\nAntonyms:')
-  console.log(antonyms.join())
+  .catch(err => {
+    console.log(err)
+  })
 }
-
-printDefinitions = (response) => {
-  definitions = []
-  let senses = extractData(response)
-  if (senses) senses.forEach(sense => {
-    if (sense.definitions) sense.definitions.forEach(definition => {
-      definitions.push(definition)
-    })
+else if(program.def) {
+  dict.getDefinitons(program.def)
+  .then(response => {
+    Util.printDefinitions(response)
   })
-  console.log('\n\nDefinitions:')
-  console.log(definitions)
+  .catch(err => {
+    console.log(err)
+  })
 }
-
-printExamples = (response) => {
-  examples = []
-  let senses = extractData(response)
-  if (senses) senses.forEach(sense => {
-    if (sense.examples) sense.examples.forEach(example => {
-      examples.push(example.text)
-    })
+else if(program.ex) {
+  dict.getExamples(program.ex)
+  .then(response => {
+    Util.printExamples(response)
   })
-  console.log('\n\nExamples:')
-  console.log(examples)
+  .catch(err => {
+    console.log(err)
+  })
 }
-
-extractData = (response) => {
-  senses = []
-  if (response.results) response.results.forEach(result => {
-    if (result.lexicalEntries) result.lexicalEntries.forEach(lexicalEntry => {
-      if (lexicalEntry.entries) lexicalEntry.entries.forEach(entry => {
-        if (entry.senses) senses.push(...entry.senses)
-      })
-    })
+else if(program.dict) {
+  dict.getFullDictionary(program.dict)
+  .then(response => {
+    Util.printDefinitions(response.defsAndExs)
+    Util.printSynonyms(response.synonyms)
+    Util.printAntonyms(response.antonyms)
+    Util.printExamples(response.defsAndExs)
   })
-  return senses
+  .catch(err => {
+    console.log(err)
+  })
+}
+else if(program.play) {
+  console.log('play')
+}
+else {
+  
 }

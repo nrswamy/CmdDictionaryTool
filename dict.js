@@ -1,6 +1,7 @@
 var DictionaryAPI = require('./api')
 const program = require('commander')
 const Util = require('./util')
+var randomWords = require('./randomWord')
 
 var dict = new DictionaryAPI()
 
@@ -65,6 +66,7 @@ else if(program.dict) {
 }
 else if(program.play) {
   console.log('play')
+  console.log(randomWords.getRandomWord())
 }
 else {
   

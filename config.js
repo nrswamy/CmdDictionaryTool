@@ -3,8 +3,8 @@ var path = require('path')
 	
 module.exports = {
 	oxfordDict: {
-    apiKey: "292ac72a4bd09cfbb9f1075065c20f70",
-    appId: "37d138bd",
+    apiKey: "",
+    appId: "",
     endpoint: "entries",
     language_code: "en-us"
 	}

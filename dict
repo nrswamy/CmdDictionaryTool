@@ -13,8 +13,9 @@ program
   .option('def, --def <word>', 'get Definitions of word')
   .option('ant, --ant <word>', 'get Antonyms of word')
   .option('ex, --ex <word>', 'get Examples of word')
-  .option('dict, --dict <word>', 'get Dictionaries of word')
+  .option('dict, --dict <word>', 'get full Dictionary of word')
   .option('play, --play', 'play game')
+  .option('./dict', 'get full dictionary for Word of the Day')
   .parse(process.argv)
 
 //  console.log(cmdValue)

@@ -8,6 +8,11 @@ chmod +x dict
 chmod +x dict.js
 ./dict --help
 ```
+
+## Configuration
+Signup on <https://developer.oxforddictionaries.com> and get app_id and app_key from application page  
+update these keys in config.js file
+
 ## Usage
 ```
 syn, --syn <word>    get Synonyms of word
